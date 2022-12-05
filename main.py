@@ -1,3 +1,5 @@
+import os
+
 #Här sparas spelar karaktärens egenskaper.
 class player:
     inventory = []
@@ -17,7 +19,8 @@ class tower:
     currentFloor = 0
     floorDialogue = []
     items = []
-    with open('items.txt') as f:
+    #Kommer behöva titta över detta sen
+    with open(os.getcwd()+r'\functionshit\items.txt') as f:
         for i in f.readlines():
             if i != '':
                 items.append(i[:-1])
@@ -76,3 +79,11 @@ class towerFloor1:
             tower.currentFloor = 2
         else:
             print('big error')
+
+
+if __name__ == '__main__':
+    p = player()
+    t = tower()
+    print(p.inventory)
+    p.newItem('sword')
+    print(p.inventory)
