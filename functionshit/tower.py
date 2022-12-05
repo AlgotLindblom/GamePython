@@ -1,26 +1,10 @@
-import os
-
-#Här sparas spelar karaktärens egenskaper.
-class player:
-    inventory = []
-    def __init__(self):
-        self.name = input('Vad heter du? \n')
-    
-    def vadheterjag(self):
-        print(f'Du heter {self.name}')
-
-    def newItem(self, item):
-        self.inventory.append(item)
-
-
 #spara olika av omvärdlens egenskaper under klassen tower.
 #samt basic movemtn går också här.
 class tower:
     currentFloor = 0
     floorDialogue = []
     items = []
-    #Kommer behöva titta över detta sen
-    with open(os.getcwd()+r'\functionshit\items.txt') as f:
+    with open('items.txt') as f:
         for i in f.readlines():
             if i != '':
                 items.append(i[:-1])
@@ -69,7 +53,7 @@ ___.$$.________| - |____
       .      `--..
         ''')
 
-#Så här tänker jag vi kan hantera att gå mellan våningar.
+#så här tänker jag vi kan hantera 
 class towerFloor1:    
     def __init__(self):
         pass
@@ -80,10 +64,14 @@ class towerFloor1:
         else:
             print('big error')
 
-
+        
+        
 if __name__ == '__main__':
-    p = player()
+    #tl = tower(1)
+    #tl.nextFloor()
     t = tower()
-    print(p.inventory)
-    p.newItem('sword')
-    print(p.inventory)
+    t.start()
+    tf2 = towerFloor1()
+    tf2.nextFloor('key')
+    print(tower.currentFloor)
+

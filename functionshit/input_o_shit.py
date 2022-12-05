@@ -1,12 +1,13 @@
-def start():
-    welcome = input("Välkommen till tornet. Ditt mål är att ta dig till toppen. Är du ny till spelet? (Ja/Nej) ")
-    if welcome == ("Ja").lower():
-        print("För att gå kan du välja att gå Framåt ('F'), Bakåt ('B'), Höger ('H') eller Vänster ('V')")
-        print("Det kommer stå i varje prompt vad du har för alternativ, så du behöver inte oroa dig vart du kan gå!")
-    elif welcome == ("Nej").lower():
-        pass
+class tower:    
+    def start():
+        welcome = input("Välkommen till tornet. Ditt mål är att ta dig till toppen. Är du ny till spelet? (Ja/Nej) ")
+        if welcome == ("Ja").lower():
+            print("För att gå kan du välja att gå Framåt ('F'), Bakåt ('B'), Höger ('H') eller Vänster ('V')")
+            print("Det kommer stå i varje prompt vad du har för alternativ, så du behöver inte oroa dig vart du kan gå!")
+        elif welcome == ("Nej").lower():
+            pass
 
-    print(f'''
+        print(f'''
 
     888
     888
@@ -30,6 +31,6 @@ ___.$$.________| - |____
     '" /  (
       .    `.
       .      `--..
-''')
+    ''')
 
-start()
+tower.start()
