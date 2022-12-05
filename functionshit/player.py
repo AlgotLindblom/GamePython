@@ -8,8 +8,12 @@ class player:
 
     def newItem(self, item):
         self.inventory.append(item)
+    
+    def myInventory(self):
+        for i in self.inventory:
+            print(i)
 
 p = player()
 p.vadheterjag()
-l = p.vadheterjag().local
-print(p.inventory)
+p.newItem(input('Va haru? '))
+p.myInventory()
