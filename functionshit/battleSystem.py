@@ -4,10 +4,12 @@ import time
 enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]] #name, current health, max health, current block, default block, amount of moves, move 1, move 2... (move type: 0: attack, 1: block)
 battleTools = [[False, 0, "Your fists", 1, "fist"], [True, 0, "Rusty sword", 3, "sword"], [True, 1, "Simple shield", 4, "shield"]] #if aquired, type, name, data value (types: 0: attack, 1: block)
 currentEnemy = None
-player = [10, 10, 0, 0] #current health, max health, current block, default block
 currentMove = [0, 0, ""] #temporarly store movetype, amount, name
 promptText = "> " #what to print when waiting for player choice
 waitText = "> " #what to print when waiting for player
+
+if __name__ == "__main__":
+    player = [10, 10, 0, 0] #current health, max health, current block, default block
 
 def playersTurn():
     currentMove = [0, 0, " "]
@@ -42,7 +44,7 @@ def playersTurn():
             currentEnemy[3] = 0
             os.system("cls")
             printBattleStatus()
-            print(f"\nYou damage the {currentEnemy[0]} for {currentMove[1]} damage")
+            print(f"\nYou damage the {currentEnemy[0]} for {-(currentEnemy[3]-currentMove[1])} damage")
         else:
             currentEnemy[3] = currentEnemy[3] - currentMove[1]
             os.system("cls")
@@ -63,12 +65,30 @@ def enemiesTurn():
     input(waitText)
     for m in range(currentEnemy[5]):
         enemyMoves.append(currentEnemy[6+m]) #load enemies moves into temp variables
-        if (enemyMoves[m][0] == 0) and (enemyMoves[m][2] >= player[0]): #if move is damage, and lethal then add to movepool (if can kill in one hit it will use damage move)
+        if (enemyMoves[m][0] == 0) and (enemyMoves[m][1] >= player[0]): #if move is damage, and lethal then add to movepool (if can kill in one hit it will use damage move)
             movePool.append(enemyMoves[m])
     if len(movePool) == 0: #if no moves in pool, will ad every move
         for m in range(len(enemyMoves)):
             movePool.append(enemyMoves[m])
     currentEnemyMove = movePool[random.randint(0, len(movePool)-1)]
+    if currentEnemyMove[0] == 0:
+        if player[2]-currentEnemyMove[1] < 0:
+            player[0] = player[0] + (player[2] - currentEnemyMove[1])
+            player[2] = 0
+            os.system("cls")
+            printBattleStatus()
+            print(f"\n{currentEnemyMove[2]} and deals {-(player[2]-currentEnemyMove[1])} damage")
+        else:
+            currentEnemy[3] = currentEnemy[3] - currentMove[1]
+            os.system("cls")
+            printBattleStatus()
+            print(f"\nYou block the {currentEnemy[0]}'s attack")
+    elif currentEnemyMove[0] == 1:
+        currentEnemy[3] = currentEnemy[3] + currentEnemyMove[1]
+        os.system("cls")
+        printBattleStatus()
+        print(f"\n{currentEnemyMove[2]} and gains {currentEnemyMove[1]} block")
+    input(waitText)
     
 
 def printBattleStatus():
@@ -102,9 +122,13 @@ def startBattle(enemie): #takes the id of the desired enemie in the enemie list
         time.sleep(0.5)
         playersTurn()
         os.system("cls")
-        printBattleStatus()
-        time.sleep(0.5)
-        enemiesTurn()
-        #break
+        if currentEnemy[1] > 0:
+            printBattleStatus()
+            time.sleep(0.5)
+            enemiesTurn()
+    if player[0] > 0:
+        return([True, player[0]])
+    else:
+        return([False, player[0]])
     
 startBattle(0)
