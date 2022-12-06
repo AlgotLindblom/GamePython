@@ -3,6 +3,7 @@ import os
 #Här sparas spelar karaktärens egenskaper.
 class player:
     inventory = []
+    health = []
     def __init__(self):
         self.name = input('Vad heter du? \n')
     
