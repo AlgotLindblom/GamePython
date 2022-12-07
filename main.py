@@ -32,10 +32,10 @@ class tower:
     def __init__(self):
         pass
     
-    def coolText(self, text, nl):
+    def coolText(self, text, speed, nl):
         for i in text:
             print(i, end='')
-            time.sleep(0.1)
+            time.sleep(speed)
         if nl:
             print('')
 
