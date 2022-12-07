@@ -80,8 +80,17 @@ ___.$$.________| - |____
       .      `--..
         ''')
 
+    #Jag tycker att rummen ska följa denna template för dialog. då får vi lite consitancy.
     def floor1(self):
-        print('this is floor 1')
+            self.coolText('''The ancient stone gates creek as you enter the tower...''', 0.02, True)
+            self.coolText('The large, circular room inside seems somhow bigger on the inside than it did from the outside.', 0.02, True)
+            input('>')
+            self.coolText('Opposing you is a stairway leading up onto the next floor.', 0.02, True)
+            if input('Do you wish to proceed? Yes/No ').lower() != 'Yes':
+                self.coolText('Too bad...', 0.5, True)
+            print('You ', end='')
+            self.coolText('slowly', 0.1, False)
+            self.coolText(' approach the stairway.', 0.02, True)
 
 
 
