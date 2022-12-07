@@ -108,7 +108,7 @@ class battleSystem:
         if len(availableTools) == 0: #if no weapons adds fists as option
             availableTools.append(["Your fists", 0])
         
-        print("\Your turn!") 
+        print("\nYour turn!") 
         input(self.waitText)
 
         print("\nAvailable items:") 
@@ -192,9 +192,11 @@ class battleSystem:
         print(f"{self.currentEnemy[0]} health:", end=" ")
         for p in range(len(healthBars[1])):
             print(healthBars[1][p], end=" ")
+        print(f"{self.currentEnemy[0]}'s block: {self.currentEnemy[3]}", end=" ")
         print(f"\nYour health:", end=" ")
         for p in range(len(healthBars[0])):
             print(healthBars[0][p], end=" ")
+        print(f"Your block: {self.player[2]}", end=" ")
         print("")
 
     #takes the id of the desired enemy in the enemy list, returns remaining health
@@ -204,6 +206,48 @@ class battleSystem:
         os.system("cls")
         print(f"An enemy {self.currentEnemy[0]} attacks!")
         input(self.waitText)
+        while (self.currentEnemy[1] > 0) and (self.player[0] > 0 ):
+            os.system("cls")
+            self.printBattleStatus()
+            time.sleep(0.5)
+            self.playersTurn()
+            os.system("cls")
+            if self.currentEnemy[1] > 0:
+                self.printBattleStatus()
+                time.sleep(0.5)
+                self.enemiesTurn()
+        gamePlayer.player = self.player
+        if self.player[0] > 0:  #if ur still alive
+            return([True, self.player[0]])
+        else:
+            return([False, self.player[0]])
+    
+    def startTutorialBattle(self): #has preset tutorial enemy
+        self.currentEnemy = ["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 2, "The skeleton braises itself for your next attack"]]
+        os.system("cls")
+        print(f"An enemy {self.currentEnemy[0]} attacks!")
+        input(self.waitText)
+        print("In battle you and the enemy take turns using items")
+        input(self.waitText)
+        print("Items either damage the enemy or give you block which blocks damage from the enemy on it's next turn")
+        input(self.waitText)
+        print("If the enemies health reaches 0 you win and can progress in the tower, but if your health reaches 0 you loose")
+        input(self.waitText)
+        os.system("cls")
+        self.printBattleStatus()
+        time.sleep(0.5)
+        self.playersTurn()
+        if self.currentEnemy[1] > 0:
+            print("Now it's the enemies turn")
+            input(self.waitText)
+            print("The enemy also uses moves that damages you or gives itself block")
+            input(self.waitText)
+            print("Enemies chooses its moves mostly at random")
+            input(self.waitText)
+            os.system("cls")
+            self.printBattleStatus()
+            time.sleep(0.5)
+            self.enemiesTurn()
         while (self.currentEnemy[1] > 0) and (self.player[0] > 0 ):
             os.system("cls")
             self.printBattleStatus()
