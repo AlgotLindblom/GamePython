@@ -32,6 +32,12 @@ class tower:
     def __init__(self):
         pass
     
+    def coolText(self, text):
+        for i in text:
+            print(i, end='')
+            time.sleep(0.1)
+        print('')
+
     def nextRoom(self):
         self.currentRoom += 1
     
@@ -219,7 +225,7 @@ if __name__ == '__main__':
     tw = tower()
     bs = battleSystem()
 
-    bs.startBattle(0)
+    bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
     
     #print(p.inventory)
     #p.newItem('sword')
