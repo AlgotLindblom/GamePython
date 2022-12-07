@@ -32,11 +32,12 @@ class tower:
     def __init__(self):
         pass
     
-    def coolText(self, text):
+    def coolText(self, text, nl):
         for i in text:
             print(i, end='')
             time.sleep(0.1)
-        print('')
+        if nl:
+            print('')
 
     def nextRoom(self):
         self.currentRoom += 1
