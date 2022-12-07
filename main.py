@@ -19,20 +19,21 @@ class gamePlayer:
 #spara olika av omvärdlens egenskaper under klassen tower.
 #samt basic movemtn går också här.
 class tower:
-    currentFloor = 0
+    currentFloor = [[]]
     floorDialogue = []
     items = []
     #Kommer behöva titta över detta sen
-    with open(os.getcwd()+r'\functionshit\items.txt') as f:
-        for i in f.readlines():
-            if i != '':
-                items.append(i[:-1])
+    if False:
+        with open(os.getcwd()+r'\functionshit\items.txt') as f:
+            for i in f.readlines():
+                if i != '':
+                    items.append(i[:-1])
 
-    def __init__(self) -> None:
+    def __init__(self):
         pass
     
-    def nextFloor(self):
-        return self.currentRoom + 1 
+    def nextRoom(self):
+        self.currentRoom += 1
     
     def start(self):
         while True:
@@ -72,21 +73,14 @@ ___.$$.________| - |____
       .      `--..
         ''')
 
-#Så här tänker jag vi kan hantera att gå mellan våningar.
-class towerFloor1:    
-    def __init__(self):
-        pass
-    
-    def nextFloor(self, inv):
-        if 'key' in inv:
-            tower.currentFloor = 2
-        else:
-            print('big error')
+    def floor1(self):
+        print('this is floor 1')
+
 
 
 class battleSystem:
     #enemies should probably be fetched from the tower floors info. Easy change
-    enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]] #name, current health, max health, current block, default block, amount of moves, move 1, move 2... (move type: 0: attack, 1: block)
+    #enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]] #name, current health, max health, current block, default block, amount of moves, move 1, move 2... (move type: 0: attack, 1: block)
     battleTools = gamePlayer.inventory[0] #if aquired, type, name, data value (types: 0: attack, 1: block)
     currentEnemy = None
     currentMove = [0, 0, ""] #temporarly store movetype, amount, name
@@ -107,10 +101,10 @@ class battleSystem:
         if len(availableTools) == 0: #if no weapons adds fists as option
             availableTools.append(["Your fists", 0])
         
-        print("\nYour move!")
+        print("\Your turn!") 
         input(self.waitText)
 
-        print("\nAvailable items:")
+        print("\nAvailable items:") 
         for n in range(len(availableTools)):
             print(availableTools[n][0])
         print("\nWhat do you want to use?")
@@ -198,7 +192,7 @@ class battleSystem:
 
     #takes the id of the desired enemy in the enemy list, returns remaining health
     def startBattle(self, enemy):
-        self.currentEnemy = self.enemies[enemy]
+        self.currentEnemy = enemy
         self.currentEnemy.insert(len(self.currentEnemy), self.currentEnemy[1])
         os.system("cls")
         print(f"An enemy {self.currentEnemy[0]} attacks!")

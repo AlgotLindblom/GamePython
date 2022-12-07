@@ -5,7 +5,7 @@ def riddle():
     firstplack = 0
     while True:
         if firstplack == 0:
-            print('När du kommer upp för trappen ser du en kort korridår som sen delar sig in till två gångar.')
+            print('När du kommer upp för trappen ser du en kort korridor som sen delar sig in till två gångar.')
             print('Precis där vägen delar sig ser du en tavla som säger')
             print(f''''
              _   _               _   _   _                                            _                       _   _                   _   
