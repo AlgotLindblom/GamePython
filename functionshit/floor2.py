@@ -14,6 +14,7 @@ class Tower:
         if input('Vill du gå åt höger eller vänster? ').lower() != "Höger":
             self.coolText('Du rycker i dörren men den är låst. Du testar dörren åt vänster istället. ', 0.05, True)
         self.coolText('Handtaget är löst. Du öppnar dörren och ett rum lyses upp av din fackla.', 0.02, True)
-
+        # Kalla på pusselfunktion
+ 
 T = Tower()
 T.floor2()
