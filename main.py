@@ -34,13 +34,13 @@ class tower:
     
     def coolText(self, text, speed, nl):
         for i in text:
-            print(i, end='')
+            print(i, end='', flush=True) #for some reason if flush was false (default) it waits the full time before printing the entire string, should work as intentded now /karl
             time.sleep(speed)
         if nl:
             print('')
 
     def nextRoom(self):
-        self.currentRoom += 1
+        self.currentRoom += 1 #currentRoom is not defined?
     
     def start(self):
         while True:
@@ -176,7 +176,7 @@ class battleSystem:
                 self.printBattleStatus()
                 print(f"\n{currentEnemyMove[2]} and deals {-(self.player[2]-currentEnemyMove[1])} damage")
             else:
-                self.currentEnemy[3] = self.currentEnemy[3] - self.currentMove[1]
+                self.player[2] = self.player[2] - currentEnemyMove[1]
                 os.system("cls")
                 self.printBattleStatus()
                 print(f"\nYou block the {self.currentEnemy[0]}'s attack")
@@ -279,6 +279,8 @@ if __name__ == '__main__':
     tw = tower()
     bs = battleSystem()
 
+    tw.coolText("hello", 1, True)
+    exit()
     bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
     
     #print(p.inventory)
