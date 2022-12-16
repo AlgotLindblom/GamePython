@@ -34,7 +34,7 @@ class tower:
     
     def coolText(self, text, speed, nl):
         for i in text:
-            print(i, end='', flush=True) #for some reason if flush was false (default) it waits the full time before printing the entire string, should work as intentded now /karl
+            print(i, end='', flush=True) #for some reason without"flush=True" this does not work as intended for me /karl
             time.sleep(speed)
         if nl:
             print('')
@@ -206,7 +206,7 @@ class battleSystem:
         print(f"Your block: {self.player[2]}", end=" ")
         print("")
 
-    #takes the id of the desired enemy in the enemy list, returns remaining health
+    #takes the id of the desired enemy in the enemy list, returns [True/False if player won battle, remaining health]
     def startBattle(self, enemy):
         self.currentEnemy = enemy
         self.currentEnemy.insert(len(self.currentEnemy), self.currentEnemy[1])
@@ -277,8 +277,6 @@ if __name__ == '__main__':
     tw = tower()
     bs = battleSystem()
 
-    tw.coolText("hello", 1, True)
-    exit()
     bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
     
     #print(p.inventory)
