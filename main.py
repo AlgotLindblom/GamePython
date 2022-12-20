@@ -20,6 +20,7 @@ class gamePlayer:
 #samt basic movemtn går också här.
 class tower:
     currentFloor = [[]]
+    enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]]
     floorDialogue = []
     items = []
     #Kommer behöva titta över detta sen
@@ -32,7 +33,7 @@ class tower:
     def __init__(self):
         pass
     
-    def coolText(self, text, speed, nl):
+    def coolText(self, text, speed, nl): #text, float(smaller gives faster speed), True or False
         for i in text:
             print(i, end='', flush=True) #for some reason without"flush=True" this does not work as intended for me /karl
             time.sleep(speed)
@@ -276,8 +277,11 @@ if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
+    def floor(self):
+        bs.startBattle(tw.enemies[0])
+    floor()
 
-    bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
+    #bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
     
     #print(p.inventory)
     #p.newItem('sword')
