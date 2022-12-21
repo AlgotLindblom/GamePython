@@ -12,7 +12,7 @@ class Tower:
         self.coolText('Du går upp för ännu en trappa', 0.02, True)
         self.coolText('Du kollar ut genom en springa i väggen och märker att du är väldigt högt upp', 0.02, True)
         self.coolText('Du möts av en mörk korridor. Det finns en dörr rakt fram och en till vänster', 0.02, True)
-        if input('Var vill du gå? (Fram/Vänster) ') != 'Fram':
+        if input('Var vill du gå? (Fram/Vänster) ').lower() != 'fram':
             self.coolText('Du går fram till dörren och drar i handtaget', 0.02, True)
             self.coolText('Dörren är låst och du väljer att gå till den andra dörren', 0.02, True)
             pass
