@@ -20,7 +20,7 @@ class Tower:
             self.coolText(' approach the stairway.', 0.02, True)
             self.coolText('You see dark room at the top of the stairway. To your right is a sign that is unclear. ', 0.02, True)
             c1 = input('You can look closer at the sign. What do you do? look/stay ')
-            if c1.lower() != 'Look':
+            if c1 != 'Look'.lower():
                 self.coolText(' You do not have any other choices. Looking at plack.... ')
             # Här kallar på gåt funktion.
     
