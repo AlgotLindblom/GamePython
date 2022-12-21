@@ -24,12 +24,12 @@ class Tower:
 
         self.coolText('Du besegrade besten och har nu fått en nyckel. Du återvänder ut i korridoren.', 0.02, True)
         self.coolText('Du återvänder in i rummet med den låsta dörren. Dina steg ekar mot marken....', 0.02, True)
-        if input('Vill du öppna dörren? ') != "Ja".lower():
+        if input('Vill du öppna dörren? ') != "Ja":
             self.coolText('Du går tillbaka ut i korridoren', 0.02, True)
             self.coolText('Efter att ha sökt igenom våningen märker du att det inte finns något mer att göra.', 0.02, True)
             self.coolText('Du återvänder till dörren och stoppar nyckeln i dörren.', 0.02, True)
             pass
-
+        self.coolText('Test', 0.02, True)
         # Kalla på våning 4
         
 t = Tower()
