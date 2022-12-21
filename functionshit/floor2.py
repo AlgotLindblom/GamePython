@@ -16,5 +16,9 @@ class Tower:
         self.coolText('Handtaget är löst. Du öppnar dörren och ett rum lyses upp av din fackla.', 0.02, True)
         # Kalla på pusselfunktion
  
+        self.coolText('Med ditt svärd i hand går du ut i korridoren igen. Du försöker öppna dörren till höger.', 0.02, True)
+        self.coolText('Dörren öppnar sig den här gången.', 0.02, True)
+        # Kalla på våning 3
+
 T = Tower()
 T.floor2()
