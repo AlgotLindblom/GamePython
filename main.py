@@ -4,8 +4,9 @@ import time
 
 #Här sparas spelar karaktärens egenskaper.
 class gamePlayer:
-    inventory = [[[False, 0, "Your fists", 1, "fist"], [True, 0, "Rusty sword", 3, "sword"], [True, 1, "Simple shield", 4, "shield"]], []] #index 0 is battle items
+    inventory = [[[False, 0, "Dina händer", 1, "händer"], [True, 0, "Kort svärd", 3, "svärd"], [True, 1, "Simpel sköld", 4, "sköld"]], []] #index 0 is battle items
     health = []
+    player = [10, 10, 0, 0]
     def __init__(self):
         self.name = input('Vad heter du? \n')
     
@@ -20,7 +21,7 @@ class gamePlayer:
 #samt basic movemtn går också här.
 class tower:
     currentFloor = [[]]
-    enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]]
+    enemies = [["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"]]]
     floorDialogue = []
     items = []
     #Kommer behöva titta över detta sen
@@ -114,19 +115,19 @@ class battleSystem:
             if battleTools[w][0] == True:
                 availableTools.append([battleTools[w][2], w])
         if len(availableTools) == 0: #if no weapons adds fists as option
-            availableTools.append(["Your fists", 0])
+            availableTools.append(["Dina händer", 0])
         
-        print("\nYour turn!") 
+        print("\nDin tur!") 
         input(self.waitText)
 
-        print("\nAvailable items:") 
+        print("\nTillgängliga verktyg:") 
         for n in range(len(availableTools)):
             print(availableTools[n][0])
-        print("\nWhat do you want to use?")
+        print("\nVilken vill du använda?")
         loop = False
         while currentMove[2] == " ":
             if loop == True:
-                print("\nThat is not a vaild item, choose another:")
+                print("\nDet är inte en tillgänglig verktyg, välj en annan:")
             loop = True
             do = input(self.promptText)
             for t in range(len(availableTools)):
@@ -140,24 +141,24 @@ class battleSystem:
                 self.currentEnemy[3] = 0
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\nYou damage the {self.currentEnemy[0]} for {-(self.currentEnemy[3]-currentMove[1])} damage")
+                print(f"\nDu skadar {self.currentEnemy[0]}et för {-(self.currentEnemy[3]-currentMove[1])} skada")
             else:
                 self.currentEnemy[3] = self.currentEnemy[3] - currentMove[1]
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\nThe {self.currentEnemy[0]} blocks your attack")
+                print(f"\n{self.currentEnemy[0]}et blockerar din attack")
         elif currentMove[0] == 1:
             self.player[2] = self.player[2] + currentMove[1]
             os.system("cls")
             self.printBattleStatus()
-            print(f"\nYou gain {currentMove[1]} block")
+            print(f"\nDu får {currentMove[1]} block")
         input(self.waitText)
 
     def enemiesTurn(self):
         enemyMoves = []
         movePool = []
         currentEnemyMove = [0, 0, " "]
-        print(f"\nThe {self.currentEnemy[0]}'s turn!")
+        print(f"\n{self.currentEnemy[0]}ets tur!")
         input(self.waitText)
         for m in range(self.currentEnemy[5]):
             enemyMoves.append(self.currentEnemy[6+m]) #load enemies moves into temp variables
@@ -173,17 +174,17 @@ class battleSystem:
                 self.player[2] = 0
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\n{currentEnemyMove[2]} and deals {-(self.player[2]-currentEnemyMove[1])} damage")
+                print(f"\n{currentEnemyMove[2]} and gör {-(self.player[2]-currentEnemyMove[1])} skada")
             else:
                 self.player[2] = self.player[2] - currentEnemyMove[1]
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\nYou block the {self.currentEnemy[0]}'s attack")
+                print(f"\ndu blockerar {self.currentEnemy[0]}ets attack")
         elif currentEnemyMove[0] == 1:
             self.currentEnemy[3] = self.currentEnemy[3] + currentEnemyMove[1]
             os.system("cls")
             self.printBattleStatus()
-            print(f"\n{currentEnemyMove[2]} and gains {currentEnemyMove[1]} block")
+            print(f"\n{currentEnemyMove[2]} och får {currentEnemyMove[1]} block")
         input(self.waitText)
         
 
@@ -197,22 +198,26 @@ class battleSystem:
             healthBars[1].insert(0, "□")
         for h in range(self.currentEnemy[1]):
             healthBars[1].insert(0, "■")
-        print(f"{self.currentEnemy[0]} health:", end=" ")
+        print(f"{self.currentEnemy[0]} hälsa:", end=" ")
         for p in range(len(healthBars[1])):
             print(healthBars[1][p], end=" ")
-        print(f"{self.currentEnemy[0]}'s block: {self.currentEnemy[3]}", end=" ")
-        print(f"\nYour health:", end=" ")
+        print(f"{self.currentEnemy[0]} block: {self.currentEnemy[3]}", end=" ")
+        print(f"\nDin hälsa:", end=" ")
         for p in range(len(healthBars[0])):
             print(healthBars[0][p], end=" ")
-        print(f"Your block: {self.player[2]}", end=" ")
+        print(f"Din block: {self.player[2]}", end=" ")
         print("")
 
     #takes the id of the desired enemy in the enemy list, returns [True/False if player won battle, remaining health]
     def startBattle(self, enemy):
-        self.currentEnemy = enemy
+        try:
+            self.player = gamePlayer.player
+        except:
+            self.player = [10, 10, 0, 0]
+        self.currentEnemy = enemy.copy()
         self.currentEnemy.insert(len(self.currentEnemy), self.currentEnemy[1])
         os.system("cls")
-        print(f"An enemy {self.currentEnemy[0]} attacks!")
+        print(f"Ett fientligt {self.currentEnemy[0]} attackerar!")
         input(self.waitText)
         while (self.currentEnemy[1] > 0) and (self.player[0] > 0 ):
             os.system("cls")
@@ -231,26 +236,26 @@ class battleSystem:
             return([False, self.player[0]])
     
     def startTutorialBattle(self): #has preset tutorial enemy
-        self.currentEnemy = ["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 2, "The skeleton braises itself for your next attack"]]
+        self.currentEnemy = ["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"]]
         os.system("cls")
-        print(f"An enemy {self.currentEnemy[0]} attacks!")
+        print(f"Ett fientligt {self.currentEnemy[0]} attackerar!")
         input(self.waitText)
-        print("In battle you and the enemy take turns using items")
+        print("I strid turas du och din fiende om att använda verktyg")
         input(self.waitText)
-        print("Items either damage the enemy or give you block which blocks damage from the enemy on it's next turn")
+        print("verktyg du använder antingen skadar din fiende eller ger dig själv block vilket blockerar skada från fiendens nästa attack")
         input(self.waitText)
-        print("If the enemies health reaches 0 you win and can progress in the tower, but if your health reaches 0 you loose")
+        print("Om fiendens hälsa når 0 vinner du striden och kan fortsätta äventyra medans om din hälsa når 0 förlorar du")
         input(self.waitText)
         os.system("cls")
         self.printBattleStatus()
         time.sleep(0.5)
         self.playersTurn()
         if self.currentEnemy[1] > 0:
-            print("Now it's the enemies turn")
+            print("Nu är det fiendens tur")
             input(self.waitText)
-            print("The enemy also uses moves that damages you or gives itself block")
+            print("Fienden kan också antingen attackera dig eller generera block")
             input(self.waitText)
-            print("Enemies chooses its moves mostly at random")
+            print("Fienden bästemer vad den gör nästan slumpmässigt")
             input(self.waitText)
             os.system("cls")
             self.printBattleStatus()
@@ -277,9 +282,10 @@ if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
-    def floor(self):
+    def floor():
         bs.startBattle(tw.enemies[0])
     floor()
+    bs.startBattle(tw.enemies[0])
 
     #bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
     
