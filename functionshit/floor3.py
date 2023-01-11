@@ -9,7 +9,7 @@ class gamePlayer:
 #copied from main 
 class battleSystem:
     #enemies should probably be fetched from the tower floors info. Easy change
-    #enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]] #name, current health, max health, current block, default block, amount of moves, move 1, move 2... (move type: 0: attack, 1: block)
+    #enemies = [["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"], "et"]] #name, current health, max health, current block, default block, amount of moves, move 1, move 2... (move type: 0: attack, 1: block)
     battleTools = gamePlayer.inventory[0] #if aquired, type, name, data value (types: 0: attack, 1: block)
     currentEnemy = None
     currentMove = [0, 0, ""] #temporarly store movetype, amount, name
@@ -54,12 +54,12 @@ class battleSystem:
                 self.currentEnemy[3] = 0
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\nDu skadar {self.currentEnemy[0]}et för {-(self.currentEnemy[3]-currentMove[1])} skada")
+                print(f"\nDu skadar {self.currentEnemy[0]}{self.currentEnemy[8]} för {-(self.currentEnemy[3]-currentMove[1])} skada")
             else:
                 self.currentEnemy[3] = self.currentEnemy[3] - currentMove[1]
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\n{self.currentEnemy[0]}et blockerar din attack")
+                print(f"\n{self.currentEnemy[0]}{self.currentEnemy[8]}  blockerar din attack")
         elif currentMove[0] == 1:
             self.player[2] = self.player[2] + currentMove[1]
             os.system("cls")
@@ -71,7 +71,7 @@ class battleSystem:
         enemyMoves = []
         movePool = []
         currentEnemyMove = [0, 0, " "]
-        print(f"\n{self.currentEnemy[0]}ets tur!")
+        print(f"\n{self.currentEnemy[0]}{self.currentEnemy[8]}s tur!")
         input(self.waitText)
         for m in range(self.currentEnemy[5]):
             enemyMoves.append(self.currentEnemy[6+m]) #load enemies moves into temp variables
@@ -92,7 +92,7 @@ class battleSystem:
                 self.player[2] = self.player[2] - currentEnemyMove[1]
                 os.system("cls")
                 self.printBattleStatus()
-                print(f"\ndu blockerar {self.currentEnemy[0]}ets attack")
+                print(f"\ndu blockerar {self.currentEnemy[0]}{self.currentEnemy[8]}s attack")
         elif currentEnemyMove[0] == 1:
             self.currentEnemy[3] = self.currentEnemy[3] + currentEnemyMove[1]
             os.system("cls")
@@ -149,7 +149,7 @@ class battleSystem:
             return([False, self.player[0]])
     
     def startTutorialBattle(self): #has preset tutorial enemy
-        self.currentEnemy = ["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"]]
+        self.currentEnemy = ["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"], "et"]
         os.system("cls")
         print(f"Ett fientligt {self.currentEnemy[0]} attackerar!")
         input(self.waitText)
@@ -191,7 +191,7 @@ class battleSystem:
             return([False, self.player[0]])
 
 class Tower:
-    enemies = [["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"]]]
+    enemies = [["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"], "et"]]
     def coolText(self, text, speed, nl):
         for i in text:
             print(i, end='', flush=True)
@@ -226,7 +226,7 @@ class Tower:
         self.coolText('Runt halsen på skelettet hänger en nyckel på en kedja', 0.02, True)
         if högerFörsök > 0:
             self.coolText('Kan detta vara nyckeln till den högra dörren?', 0.02, True)
-        self.coolText('Medans du stirrar på skelettet börjar det glöda rött i dess ögon och skälettet börjar röra på sig', 0.02, True)
+        self.coolText('Medans du stirrar på skelettet börjar det glöda rött i dess ögon och skelettet börjar röra på sig', 0.02, True)
         self.coolText('Skelettet attackerar dig!', 0.02, True)
         input("> ")
         bs.startTutorialBattle()
