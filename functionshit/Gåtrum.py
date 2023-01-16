@@ -1,11 +1,28 @@
 
 
 
+def tressureRoom():
+    print(f'''You crouch down almost having to crawl down the path
+    You emerge from the path into a room full of candles where you see a glass stand with the number 5 on it.\n
+    In the base of the stand you notice a cubic hole. Before you you see 3 boxes.
+                                    _____                                   
+                              4_   /
+    On the first box it says :  \_/   625
+    \n                                   
+    On the second box it says : x < 0  x^2=25
+    \n
+    On the third box it says : |x-7| = 25
+    ''')
+    while True: 
+        choiceOfBoxes = int(input('One of the 3 boxes will fit in the hole\nWhich one do you choose?'))
+
+
+
 def riddle():
     firstplack = 0
     while True:
         if firstplack == 0:
-            print('När du kommer upp för trappen ser du en kort korridår som sen delar sig in till två gångar.')
+            print('När du kommer upp för trappen ser du en kort algots rövhål som sen delar sig in till två gångar.')
             print('Precis där vägen delar sig ser du en tavla som säger')
             print(f''''
              _   _               _   _   _                                            _                       _   _                   _   
@@ -61,7 +78,9 @@ def riddle():
                         __/ |                                                                                                           
                         |___/                                                                                                             
             ''')
-        directionChoice_1 = str(input('Vilket håll väljer du vänster eller höger?\n').lower)
-        if directionChoice_1 == 'h' or 'höger':
+        directionChoice_1 = str(input('Which pathway do you choose? To the Right or to the Left\n').lower)
+        if directionChoice_1 == 'R' or 'Right':
             firstplack + 1
-            print(  )
+            print('You walk down the pathway, all of a sudden ')
+        elif directionChoice_1 == 'L' or 'Left':
+            print('Choosing the pathway to the left you start walking.\nAfter a while you find a small crouching path to the left')
