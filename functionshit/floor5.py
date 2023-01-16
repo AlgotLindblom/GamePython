@@ -264,7 +264,7 @@ class Tower:
 
                                 
 
-''', 0.0001, True)
+''', 0.00001, True)
         self.coolText('''
 
   ______   __                                        __                                    
@@ -289,7 +289,7 @@ class Tower:
  \$$    $$|       $$|       $$                                                             
   \$$$$$$  \$$$$$$$  \$$$$$$$          
 
-''', 0.0001, True)
+''', 0.00001, True)
 
 bs = battleSystem()
 t = Tower()
