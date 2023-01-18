@@ -138,6 +138,69 @@ ___.$$.________| - |____
         self.coolText('Dörren öppnas till en trappa till nästa våning', 0.02, True)
         # Kalla på våning 4
 
+    def floor5(self):
+        self.coolText('Du känner en skum lukt ju högre upp i trappan du kommer.', 0.02, True)
+        self.coolText('Ett högt flåsande hörs och du börjar känna dig nervös.', 0.02, True)
+        self.coolText('Ur skuggorna kommer en grovt överviktig, illaluktande Goblin som överfaller dig.', 0.02, True)
+        
+        input("> ")
+        bs.startBossBattle()
+
+
+        self.coolText('''
+
+  ______                         __        __      __            __       
+ /      \                       |  \      |  \    |  \          |  \      
+|  $$$$$$\  ______    ______   _| $$_    _| $$_    \$$  _______ | $$      
+| $$ __\$$ /      \  |      \ |   $$ \  |   $$ \  |  \ /       \| $$      
+| $$|    \|  $$$$$$\  \$$$$$$\ \$$$$$$   \$$$$$$  | $$|  $$$$$$$| $$      
+| $$ \$$$$| $$   \$$ /      $$  | $$ __   | $$ __ | $$ \$$    \  \$$      
+| $$__| $$| $$      |  $$$$$$$  | $$|  \  | $$|  \| $$ _\$$$$$$\ __       
+ \$$    $$| $$       \$$    $$   \$$  $$   \$$  $$| $$|       $$|  \      
+  \$$$$$$  \$$        \$$$$$$$    \$$$$     \$$$$  \$$ \$$$$$$$  \$$      
+                                                                          
+                                                                          
+                                                                          
+ _______                                                                  
+|       \                                                                 
+| $$$$$$$\ __    __        __     __   ______   _______   _______         
+| $$  | $$|  \  |  \      |  \   /  \ |      \ |       \ |       \        
+| $$  | $$| $$  | $$       \$$\ /  $$  \$$$$$$\| $$$$$$$\| $$$$$$$\       
+| $$  | $$| $$  | $$        \$$\  $$  /      $$| $$  | $$| $$  | $$       
+| $$__/ $$| $$__/ $$         \$$ $$  |  $$$$$$$| $$  | $$| $$  | $$       
+| $$    $$ \$$    $$          \$$$    \$$    $$| $$  | $$| $$  | $$       
+ \$$$$$$$   \$$$$$$            \$      \$$$$$$$ \$$   \$$ \$$   \$$       
+                                                                     
+
+                                
+
+''', 0.00001, True)
+        self.coolText('''
+
+  ______   __                                        __                                    
+ /      \ |  \                                      |  \                                   
+|  $$$$$$\| $$   __   ______    ______    ______   _| $$_           ______   __     __  __ 
+| $$___\$$| $$  /  \ |      \  /      \  |      \ |   $$ \         |      \ |  \   /  \|  \+
+ \$$    \ | $$_/  $$  \$$$$$$\|  $$$$$$\  \$$$$$$\ \$$$$$$          \$$$$$$\ \$$\ /  $$ \$$
+ _\$$$$$$\| $$   $$  /      $$| $$  | $$ /      $$  | $$ __        /      $$  \$$\  $$  __ 
+|  \__| $$| $$$$$$\ |  $$$$$$$| $$__/ $$|  $$$$$$$  | $$|  \      |  $$$$$$$   \$$ $$  |  \+
+ \$$    $$| $$  \$$\ \$$    $$| $$    $$ \$$    $$   \$$  $$       \$$    $$    \$$$    \$$
+  \$$$$$$  \$$   \$$  \$$$$$$$| $$$$$$$   \$$$$$$$    \$$$$         \$$$$$$$     \$        
+                              | $$                                                         
+                              | $$                                                         
+                               \$$                                                         
+  ______                                                                                   
+ /      \                                                                                  
+|  $$$$$$\  _______   _______                                                              
+| $$  | $$ /       \ /       \                                                             
+| $$  | $$|  $$$$$$$|  $$$$$$$                                                             
+| $$  | $$ \$$    \  \$$    \                                                              
+| $$__/ $$ _\$$$$$$\ _\$$$$$$\                                                             
+ \$$    $$|       $$|       $$                                                             
+  \$$$$$$  \$$$$$$$  \$$$$$$$          
+
+''', 0.00001, True)
+
 
 
 class battleSystem:
@@ -317,6 +380,35 @@ class battleSystem:
                 self.printBattleStatus()
                 time.sleep(0.5)
                 self.enemiesTurn()
+        gamePlayer.player = self.player
+        if self.player[0] > 0:  #if ur still alive
+            return([True, self.player[0]])
+        else:
+            return([False, self.player[0]])
+
+    def startBossBattle(self):
+        try:
+            self.player = gamePlayer.player
+        except:
+            self.player = [10, 10, 0, 0]
+        self.currentEnemy = ["Fet goblin", 25, 25, 0, 0, 2, [0, 3, "goblinen tacklar dig"], [0, 2, "goblinen spottar syra på dig"], "en", ['Dö din ryggradslösa imbecill!', 'Du stinker värre än vad jag gör!', 'Du fick mig nästan!', 'Se upp så jag inte smäcker till dig med fläsket!', 'Min farmor siktar bättre än dig!', 'Kom ihåg vad Jesus en gång sa, pissa inte i motvind!', 'Du träffa ju din chungus!', 'Låt mig vara, jag kommer sätta mig på dig!', 'Du är bättre än vad man tror!', 'Hade jag varit du hade jag sprungit!', 'Död åt kungen!', 'Ta mig i röva o kalla mig Bengt, det där gjorde ont!']]
+        os.system("cls")
+        print(f"En fientlig {self.currentEnemy[0]} attackerar!")
+        input(self.waitText)
+        while (self.currentEnemy[1] > 0) and (self.player[0] > 0 ):
+            os.system("cls")
+            self.printBattleStatus()
+            time.sleep(0.5)
+            self.playersTurn()
+            os.system("cls")
+            if self.currentEnemy[1] > 0:
+                self.printBattleStatus()
+                time.sleep(0.5)
+                self.enemiesTurn()
+                if random.randrange(0, 2) == 1:
+                    print("\nGoblinen skriker fula ord åt dig")
+                    print(self.currentEnemy[9][random.randrange(0, len(self.currentEnemy[9]))])
+                    input("> ")
         gamePlayer.player = self.player
         if self.player[0] > 0:  #if ur still alive
             return([True, self.player[0]])
