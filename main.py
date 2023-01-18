@@ -15,6 +15,10 @@ class gamePlayer:
 
     def newItem(self, item):
         self.inventory.append(item)
+    
+    def playerDeath(self):
+        print()
+        #kör catbomb
 
 
 #spara olika av omvärdlens egenskaper under klassen tower.

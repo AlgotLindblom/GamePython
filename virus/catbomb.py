@@ -23,6 +23,4 @@ class Cat:
         root.mainloop()
 
 Cat()
-while True:
-    os.system('start /MIN python.exe catbomb.py')
-    Cat()
+os.system('start /MIN python.exe catbomb.py')
