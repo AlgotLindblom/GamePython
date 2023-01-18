@@ -46,6 +46,7 @@ class tower:
     
     def start(self):
         while True:
+            self.coolText("Spela detta spel i kommandotolken i fullscreenläge för att grafiken ska funka.", 0.001, True)
             welcome = input("Välkommen till tornet. Ditt mål är att ta dig till toppen. Är du ny till spelet? (Ja/Nej) ").lower()
             if welcome == ("nej"):
                 continue
