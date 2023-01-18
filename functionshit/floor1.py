@@ -6,7 +6,7 @@ class Tower:
             print(i, end='')
             time.sleep(speed)
         if nl:
-            print('')
+            print('') #Den här funktionen används på alla plan. Gör att texten långsamt och snyggare kommer fram i terminalen.
     
     def floor1(self):
             self.coolText('''De uråldriga stendörrarna gnäller dovt när du forcerar dig in i TORNETS dunkel.''', 0.02, True)
