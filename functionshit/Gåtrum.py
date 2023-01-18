@@ -1,4 +1,6 @@
 import time
+import random
+
 
 class Tower:
     def coolText(self, text, speed, nl): #text, float(smaller gives faster speed), True or False
@@ -38,8 +40,21 @@ class Tower:
                                 I dess plats så står det ett elegant svärd i blankt stål
                         ''')
                 case 2:
-                    self.coolText(f'''' Du hör ett rummel och ser hur en yxa susar ut ur väggen mot dig!''')
-                        
+                    self.coolText(f'''' Du hör ett rummel och ser hur en yxa susar ut ur väggen rakt framför dig!''', 0.02, True)
+                    match input(f''' 
+                            Vilket håll vill du undvika åt? Höger eller vänster?''').lower():
+                            case 'ja':
+                                self.coolText('Du hoppar åt höger', 0.02, True)
+
+                            case 'nej':
+                                self.coolText('Du hoppar åt vänster', 0.02, True)
+                               
+                            case other:
+                                print('yes')
+                    if  random.randint(0,1):
+                        #ta livet av dom 
+                        print('död')
+
             break
 
 
