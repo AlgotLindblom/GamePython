@@ -100,6 +100,7 @@ ___.$$.________| - |____
 
     def floor3(self):
         temp = False
+        print(" ")
         self.coolText('Du känner en kall bris över din rygg när du går upp för trappan', 0.02, True)
         self.coolText('Månens ljus slinkras igenom i den trasig torn väggen och lyser upp rummet framför dig', 0.02, True)
         self.coolText('I rummet finns det två dörrar', 0.02, True)
@@ -141,9 +142,11 @@ ___.$$.________| - |____
             self.coolText('Du försöker öppna den andra dörren men upptäcker att den är låst', 0.02, True)
             self.coolText('Du snabbt låser upp dörren med nyckeln du presis hittade', 0.02, True)
         self.coolText('Dörren öppnas till en trappa till nästa våning', 0.02, True)
-        # Kalla på våning 4
+        
+        self.floor4()
 
     def floor4(self):
+        print(" ")
         self.coolText('Du går upp för ännu en trappa', 0.02, True)
         self.coolText('Du kollar ut genom en springa i väggen och märker att du är väldigt högt upp', 0.02, True)
         self.coolText('Du möts av en mörk korridor. Det finns en dörr rakt fram och en till höger', 0.02, True)
@@ -157,9 +160,11 @@ ___.$$.________| - |____
         self.coolText('Efter att du besegrat besten går du tillbaka ut i korridoren. Dörren som nu är till vänster om dig verkar stå på glänt.', 0.02, True)
         self.coolText('Du öppnar den och känner en bris av varm luft komma mot dig.', 0.02, True)
         self.coolText('Du börjar gå upp för trappan.', 0.02, True)
-        # Kalla på våning 5 (bossfight)
+        
+        self.floor5()
 
     def floor5(self):
+        print(" ")
         self.coolText('Du känner en skum lukt ju högre upp i trappan du kommer.', 0.02, True)
         self.coolText('Ett högt flåsande hörs och du börjar känna dig nervös.', 0.02, True)
         self.coolText('Ur skuggorna kommer en grovt överviktig, illaluktande Goblin som överfaller dig.', 0.02, True)
@@ -235,6 +240,10 @@ class battleSystem:
     player = [10, 10, 0, 0] #current health, max health, current block, default block
     
     def __init__(self) -> None:
+        pass
+
+    def battleLoss(self):
+        #call catbombthing?
         pass
 
     def playersTurn(self):
@@ -363,7 +372,7 @@ class battleSystem:
         if self.player[0] > 0:  #if ur still alive
             return([True, self.player[0]])
         else:
-            return([False, self.player[0]])
+            self.battleLoss()
     
     def startTutorialBattle(self): #has preset tutorial enemy
         self.currentEnemy = ["Skelett", 10, 10, 0, 0, 2, [0, 2, "Skelettet svingar sina armar mot dig"], [1, 2, "Skelettet förbereder sig för att ta din nästa attack"], "et"]
@@ -405,7 +414,7 @@ class battleSystem:
         if self.player[0] > 0:  #if ur still alive
             return([True, self.player[0]])
         else:
-            return([False, self.player[0]])
+            self.battleLoss()
 
     def startBossBattle(self):
         try:
@@ -434,13 +443,14 @@ class battleSystem:
         if self.player[0] > 0:  #if ur still alive
             return([True, self.player[0]])
         else:
-            return([False, self.player[0]])
+            self.battleLoss()
 
 
 if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
+    tw.floor3()
     def floor():
         bs.startBattle(tw.enemies[0])
     floor()
