@@ -1,5 +1,7 @@
 #spara olika av omvärdlens egenskaper under klassen tower.
 #samt basic movemtn går också här.
+import time
+
 class tower:
     currentFloor = 0
     floorDialogue = []
@@ -11,7 +13,13 @@ class tower:
 
     def __init__(self) -> None:
         pass
-    
+
+    def coolText(self, text):
+        for i in text:
+            print(i, end='')
+            time.sleep(0.1)
+        print('')
+
     def nextFloor(self):
         return self.currentRoom + 1 
     
