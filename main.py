@@ -85,6 +85,60 @@ ___.$$.________| - |____
       .      `--..
         ''')
 
+    def coolText(self, text, speed, nl):
+        for i in text:
+            print(i, end='')
+            time.sleep(speed)
+        if nl:
+            print('') #Den här funktionen används på alla plan. Gör att texten långsamt och snyggare kommer fram i terminalen.
+    
+    def gouta(self): # Gjort av Albin. Cool grafik o grejer.
+        self.coolText('Ett plakat lyses upp framför dig')
+        print('''
+
+ __    __                                                              __                    __              _  _                                                      
+|  \  |  \                                                            |  \                  |  \            | \| \                                                     
+| $$  | $$ __    __   ______         ______ ____   __    __   _______ | $$   __   ______   _| $$_           _\$_\$    ______                                           
+| $$__| $$|  \  |  \ /      \       |      \    \ |  \  |  \ /       \| $$  /  \ /      \ |   $$ \         |      \  /      \                                          
+| $$    $$| $$  | $$|  $$$$$$\      | $$$$$$\$$$$\| $$  | $$|  $$$$$$$| $$_/  $$|  $$$$$$\ \$$$$$$          \$$$$$$\|  $$$$$$\                                         
+| $$$$$$$$| $$  | $$| $$   \$$      | $$ | $$ | $$| $$  | $$| $$      | $$   $$ | $$    $$  | $$ __        /      $$| $$   \$$                                         
+| $$  | $$| $$__/ $$| $$            | $$ | $$ | $$| $$__/ $$| $$_____ | $$$$$$\ | $$$$$$$$  | $$|  \      |  $$$$$$$| $$                                               
+| $$  | $$ \$$    $$| $$            | $$ | $$ | $$ \$$    $$ \$$     \| $$  \$$\ \$$     \   \$$  $$       \$$    $$| $$                                               
+ \$$   \$$  \$$$$$$  \$$             \$$  \$$  \$$ _\$$$$$$$  \$$$$$$$ \$$   \$$  \$$$$$$$    \$$$$         \$$$$$$$ \$$                                               
+                                                  |  \__| $$                                                                                                           
+                                                   \$$    $$                                                                                                           
+                                                    \$$$$$$                                                                                                            
+       __            __        __                  __    __                                       __          _  _    __   ______     __                               
+      |  \          |  \      |  \                |  \  |  \                                     |  \        | \| \  |  \ /      \   |  \                              
+  ____| $$ __    __ | $$____  | $$____    ______  | $$ _| $$_           ______   __     __       | $$____    _\$_\$  | $$|  $$$$$$\ _| $$_     ______   _______        
+ /      $$|  \  |  \| $$    \ | $$    \  /      \ | $$|   $$ \         |      \ |  \   /  \      | $$    \  |      \ | $$| $$_  \$$|   $$ \   /      \ |       \       
+|  $$$$$$$| $$  | $$| $$$$$$$\| $$$$$$$\|  $$$$$$\| $$ \$$$$$$          \$$$$$$\ \$$\ /  $$      | $$$$$$$\  \$$$$$$\| $$| $$ \     \$$$$$$  |  $$$$$$\| $$$$$$$\      
+| $$  | $$| $$  | $$| $$  | $$| $$  | $$| $$    $$| $$  | $$ __        /      $$  \$$\  $$       | $$  | $$ /      $$| $$| $$$$      | $$ __ | $$    $$| $$  | $$      
+| $$__| $$| $$__/ $$| $$__/ $$| $$__/ $$| $$$$$$$$| $$  | $$|  \      |  $$$$$$$   \$$ $$        | $$  | $$|  $$$$$$$| $$| $$        | $$|  \| $$$$$$$$| $$  | $$      
+ \$$    $$ \$$    $$| $$    $$| $$    $$ \$$     \| $$   \$$  $$       \$$    $$    \$$$         | $$  | $$ \$$    $$| $$| $$         \$$  $$ \$$     \| $$  | $$      
+  \$$$$$$$  \$$$$$$  \$$$$$$$  \$$$$$$$   \$$$$$$$ \$$    \$$$$         \$$$$$$$     \$           \$$   \$$  \$$$$$$$ \$$ \$$          \$$$$   \$$$$$$$ \$$   \$$      
+                                                                                                                                                                       
+                                                                                                                                                                       
+                                                                                                                                                                       
+                             ______   _______    ______    ____                                                                                                        
+                            /      \ |       \  /      \  /    \                                                                                                       
+  ______   __     __       |  $$$$$$\| $$$$$$$ |  $$$$$$\|  $$$$\                                                                                                      
+ |      \ |  \   /  \       \$$__| $$| $$____  | $$$\| $$ \$$| $$                                                                                                      
+  \$$$$$$\ \$$\ /  $$       /      $$| $$    \ | $$$$\ $$   /  $$                                                                                                      
+ /      $$  \$$\  $$       |  $$$$$$  \$$$$$$$\| $$\$$\$$  |  $$                                                                                                       
+|  $$$$$$$   \$$ $$        | $$_____ |  \__| $$| $$_\$$$$   \$$                                                                                                        
+ \$$    $$    \$$$         | $$     \ \$$    $$ \$$  \$$$  |  \                                                                                                        
+  \$$$$$$$     \$           \$$$$$$$$  \$$$$$$   \$$$$$$    \$$                                                                                                        
+                                                                                         
+
+''')
+        
+        if input('> ') != "250".lower(): # Om du inte skriver 250 får du fel och får börja om tills du svarar.
+            self.coolText('Fel. Försök igen. Tänker efter, bitch.', 0.02, True)
+            self.gouta()
+        self.coolText('Rätt, du kan gå vidare.', 0.02, True)
+
+
     #Jag tycker att rummen ska följa denna template för dialog. då får vi lite consitancy.
     def floor1(self):
             self.coolText('''The ancient stone gates creek as you enter the tower...''', 0.02, True)
@@ -97,6 +151,19 @@ ___.$$.________| - |____
             self.coolText('slowly', 0.1, False)
             self.coolText(' approach the stairway.', 0.02, True)
 
+    def floor2(self):
+        self.coolText('Du går upp för den mörka trappan. Dina steg ekar i det tomma tornet.', 0.02, True)
+        self.coolText('Framför dig ser du en korridor med två vägar', 0.02, True)
+        if input('Vill du gå åt höger eller vänster? ').lower() != "höger":
+            self.coolText('Du rycker i dörren men den är låst. Du testar dörren åt vänster istället. ', 0.05, True)
+        self.coolText('Handtaget är löst. Du öppnar dörren och ett rum lyses upp av din fackla.', 0.02, True)
+
+        self.gouta()
+ 
+        self.coolText('Med ditt svärd i hand går du ut i korridoren igen. Du försöker öppna dörren till höger.', 0.02, True)
+        self.coolText('Dörren öppnar sig den här gången.', 0.02, True)
+
+        self.floor3()
 
     def floor3(self):
         temp = False
