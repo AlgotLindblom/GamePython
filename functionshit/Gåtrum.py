@@ -43,18 +43,19 @@ class Tower:
                     self.coolText(f'''' Du hör ett rummel och ser hur en yxa susar ut ur väggen rakt framför dig!''', 0.02, True)
                     match input(f''' 
                             Vilket håll vill du undvika åt? Höger eller vänster?''').lower():
-                            case 'ja':
+                            case 'höger':
                                 self.coolText('Du hoppar åt höger', 0.02, True)
 
-                            case 'nej':
+                            case 'vänster':
                                 self.coolText('Du hoppar åt vänster', 0.02, True)
                                
                             case other:
-                                print('yes')
-                    if  random.randint(0,1):
+                                print('död')
+                    if bool(random.getrandbits(1)):
                         #ta livet av dom 
                         print('död')
-
+                case 3: 
+                    self.coolText(f'''' Du hör en främmande röst messa genom rummet. Och känner värmen mot din hud.  ''')
             break
 
 
