@@ -11,19 +11,19 @@ class Tower:
             print('')
 
     def tressureRoom(self):
-        self.coolText(f'''You crouch down almost having to crawl down the path
+        self.coolText(f'''Du duckar ner i den trånga gången som snabbt smalnar tills då nästan ålar.
         You emerge from the path into a room full of candles where you see a glass stand with the number 5 on it.\n
         In the base of the stand you notice a cubic hole. Before you you see 3 boxes.
                                         _____                                   
-                                4_   /
-        On the first box it says :  \_/   625
+                                  4_   /
+        På den första lådan står :  \_/   625
         \n                                   
         On the second box it says : x < 0  x^2=25
         \n
         On the third box it says : |x-7| = 25
         ''')
         while True: 
-            match int(input('One of the 3 boxes will fit in the hole\nWhich one do you choose?')):
+            match int(input('En av de tre lådorna passar i hålet.\Vilken låda 1 till 3 väljer du?\n> ')):
                 case 1:
                     self.coolText(f''''När du placerar in lådan så hör du ett muller och hur glass monter med ett POP försvinner in i tomma luften.
                                 I dess plats så står det ett elegant svärd i blankt stål
@@ -40,7 +40,7 @@ class Tower:
                                
                             case other:
                                 print('död')
-                    if bool(random.getrandbits(1)):
+                    if bool(random.getrandbits(1)): #50 50 chans att ge game over.
                         #ta livet av dom 
                         print('död')
                 case 3: 
