@@ -23,17 +23,6 @@ class Tower:
         On the third box it says : |x-7| = 25
         ''')
         while True: 
-            choiceOfBoxes = int(input('One of the 3 boxes will fit in the hole\nWhich one do you choose?'))
-            if choiceOfBoxes == 1: 
-                self.coolText(f''''När du placerar in lådan så hör du ett muller och hur glass monter med ett POP försvinner in i tomma luften.
-                        I dess plats så står det ett elegant svärd i blankt stål
-                ''')
-
-            elif choiceOfBoxes == 2: 
-                print()
-            elif choiceOfBoxes == 3:
-                print()
-                break
             match int(input('One of the 3 boxes will fit in the hole\nWhich one do you choose?')):
                 case 1:
                     self.coolText(f''''När du placerar in lådan så hör du ett muller och hur glass monter med ett POP försvinner in i tomma luften.
