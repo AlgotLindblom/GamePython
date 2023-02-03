@@ -1,7 +1,7 @@
 import os
 import random
 import time
-import catbomb as cat
+import catbomb as cat #when I try to run the code it gives error where it cant find cat.gif but it looks like its looking for it in a folder one step too high up /karl
 
 #Här sparas spelar karaktärens egenskaper.
 class gamePlayer:
@@ -91,7 +91,7 @@ ___.$$.________| - |____
 
     def coolText(self, text, speed, nl):
         for i in text:
-            print(i, end='')
+            print(i, end='', flush=True)
             time.sleep(speed)
         if nl:
             print('') #Den här funktionen används på alla plan. Gör att texten långsamt och snyggare kommer fram i terminalen.
@@ -167,12 +167,12 @@ ___.$$.________| - |____
         self.coolText('Du går upp för den mörka trappan. Dina steg ekar i det tomma tornet.', 0.02, True)
         self.coolText('Framför dig ser du en korridor med två vägar', 0.02, True)
         if input('Vill du gå åt höger eller vänster? ').lower() != "höger":
-            self.coolText('Du rycker i dörren men den är låst. Du testar dörren åt vänster istället. ', 0.05, True)
+            self.coolText('Du rycker i dörren men den är låst. Du testar dörren åt höger istället. ', 0.05, True)
         self.coolText('Handtaget är löst. Du öppnar dörren och ett rum lyses upp av din fackla.', 0.02, True)
 
-        self.gouta()
+        self.gouta() #doesnt find anything?
  
-        self.coolText('Med ditt svärd i hand går du ut i korridoren igen. Du försöker öppna dörren till höger.', 0.02, True)
+        self.coolText('Med ditt svärd i hand går du ut i korridoren igen. Du försöker öppna dörren till vänster.', 0.02, True)
         self.coolText('Dörren öppnar sig den här gången.', 0.02, True)
 
         self.floor3()
@@ -528,7 +528,7 @@ if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
-    tw.floor3()
+    tw.floor1()
     def floor():
         bs.startBattle(tw.enemies[0])
     floor()
