@@ -86,7 +86,7 @@ class tower:
             print("För att gå kan du välja att gå Framåt ('F'), Bakåt ('B'), Höger ('H') eller Vänster ('V')")
             print("Det kommer stå i varje prompt vad du har för alternativ, så du behöver inte oroa dig vart du kan gå!")
             break  
-        print(f'''
+        self.coolText(f'''
 
     888
     888
@@ -110,7 +110,9 @@ ___.$$.________| - |____
     '" /  (
       .    `.
       .      `--..
-        ''')
+        ''', 0.00000001, True)
+        input("> ")
+        self.floor1()
 
     def coolText(self, text, speed, nl):
         for i in text:
@@ -549,11 +551,11 @@ if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
-    tw.floor1()
-    def floor():
-        bs.startBattle(tw.enemies[0])
-    floor()
-    bs.startBattle(tw.enemies[0])
+    tw.start()
+    # def floor():
+    #    bs.startBattle(tw.enemies[0])
+    # floor()
+    # bs.startBattle(tw.enemies[0])
 
     #bs.startBattle(["skeleton", 10, 10, 0, 0, 2, [0, 2, "The skeleton swings at you"], [1, 3, "The skeleton braises itself for your next attack"]]) #hihi
     
