@@ -545,8 +545,7 @@ if __name__ == '__main__':
     gp = gamePlayer()
     tw = tower()
     bs = battleSystem()
-    gp.playerDeath()
-    #tw.start()
+    tw.start()
     # def floor():
     #    bs.startBattle(tw.enemies[0])
     # floor()
