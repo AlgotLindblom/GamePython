@@ -1,4 +1,5 @@
 # Tornet
+Algot, Albin, Karl och Tim
 
 Du behöver ha Python 3 nerladdat för detta programmet. Gå till https://www.python.org/downloads/ för att skaffa det.
 
